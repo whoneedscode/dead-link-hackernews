@@ -1,0 +1,13 @@
+-------------------Key Components---------------------
+- A scraper 
+- An html response checker
+- A method to go user by user and look at all of their links, then run them through the response checker
+* add here *
+-------------------Decisions to Make-------------------
+- GUI(simple way for people to check their submission links)
+    - They could enter their HN username, then we would get a link to all of their submissions
+    - We would just run through all of the their previous post links, and return a message about link status
+- Instead of someone coming to our app to type in their user, we could try to scrap all users in a batch
+    - We would need a way to contact them though, which is a problem on HN
+* add here *
+
