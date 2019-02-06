@@ -1,0 +1,38 @@
+Submissions, comments, etc. are all items.
+
+Accessing items:
+https://hacker-news.firebaseio.com/v0/item/<id>
+
+Response:
+{
+  "by" : "norvig",
+  "id" : 2921983,
+  "kids" : [ 2922097, 2922429, 2924562, 2922709, 2922573, 2922140, 2922141 ],
+  "parent" : 2921506,
+  "text" : "Aw shucks, guys ... you make me blush with your compliments.<p>Tell you what, Ill make a deal: I'll keep writing if you keep reading. K?",
+  "time" : 1314211127,
+  "type" : "comment"
+}
+
+The only items without a `text` field are stories.
+
+
+Users are identified by a case sensitive id, their username.
+https://hacker-news.firebaseio.com/v0/user/<id>
+
+Response:
+{
+  "about" : "This is a test",
+  "created" : 1173923446,
+  "delay" : 0,
+  "id" : "jl",
+  "karma" : 2937,
+  "submitted" : [ 8265435, 8168423, 41098, 39153, 38678, 37741, 33469, 12897, 6746, 5252, 4752, 4586, 4289 ]
+}
+This only works if the user has public activity.
+
+More information at `https://github.com/HackerNews/API`
+
+get username -> query api -> for each id in submitted:
+    query api -> get all links from text -> return all dead links
+-> present all dead links with links to the task containing(either the task has a `url` field or it's parent has) the dead links to the user
