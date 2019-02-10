@@ -1,5 +1,5 @@
 (ns hn-dead-links.api
-  (:require [clj-http.client :as client]
+  (:require [org.httpkit.client :as http]
             [clojure.data.json :as json]))
 
 (def base-uri "https://hacker-news.firebaseio.com/v0")
@@ -7,7 +7,7 @@
 
 (defn get-request
   [url]
-  (client/get url))
+  @(http/get url))
 
 (defn get-body
   [req]
@@ -46,5 +46,21 @@
        (hn-get-user-stories)
        (map (fn [req] (get req "url")))))
 
+(defn is-site-good
+  [url]
+  (let [{:keys [error] :as resp} (get-request url)]
+    (not (boolean error))))
+
+(defn url-good
+  [url]
+  (println url)
+  (into {} [[:url url] [:is-good (is-site-good url)]]))
+
+
+(defn hn-get-user-stories-status
+  [user]
+  (->> user
+       (hn-get-user-stories-links)))
+
 (def test-user "")
-(println (hn-get-user-stories test-user))
+(println (hn-get-user-stories-links test-user))
